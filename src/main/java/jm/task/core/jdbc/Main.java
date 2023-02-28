@@ -3,8 +3,12 @@ package jm.task.core.jdbc;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 
+import java.sql.SQLException;
+
+import static jm.task.core.jdbc.util.Util.getConnection;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // реализуйте алгоритм здесь
         UserService userService = new UserServiceImpl();
         userService.createUsersTable();
@@ -14,6 +18,8 @@ public class Main {
         userService.saveUser("Clown", "Closs", (byte) 21);
         userService.cleanUsersTable();
         userService.dropUsersTable();
+        getConnection().close();
+
 
     }
 }
